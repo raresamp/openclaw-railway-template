@@ -42,6 +42,7 @@ ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}
 ENV HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
 ENV HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
 ENV HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
+ENV CF_TOKEN=$CF_TOKEN
 
 ENV PORT=8080
 ENV OPENCLAW_ENTRY=/usr/local/lib/node_modules/openclaw/dist/entry.js
