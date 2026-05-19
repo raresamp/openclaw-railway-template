@@ -1,5 +1,7 @@
 FROM node:24-bookworm
 
+ARG CF_TOKEN
+
 RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     ca-certificates \
@@ -12,6 +14,10 @@ RUN apt-get update \
     zip \
     unzip \
   && rm -rf /var/lib/apt/lists/*
+
+RUN curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 \
+     -o /usr/local/bin/cloudflared \
+  && chmod +x /usr/local/bin/cloudflared
 
 RUN npm install -g openclaw@2026.5.7
 RUN npm install -g clawhub@latest
@@ -36,6 +42,7 @@ ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}
 ENV HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
 ENV HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
 ENV HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
+ENV CF_TOKEN=$CF_TOKEN
 
 ENV PORT=8080
 ENV OPENCLAW_ENTRY=/usr/local/lib/node_modules/openclaw/dist/entry.js
