@@ -13,6 +13,10 @@ RUN apt-get update \
     unzip \
   && rm -rf /var/lib/apt/lists/*
 
+RUN curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 \
+     -o /usr/local/bin/cloudflared \
+  && chmod +x /usr/local/bin/cloudflared
+
 RUN npm install -g openclaw@2026.5.7
 RUN npm install -g clawhub@latest
 
