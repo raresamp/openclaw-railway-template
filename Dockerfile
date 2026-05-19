@@ -1,5 +1,7 @@
 FROM node:24-bookworm
 
+ARG CF_TOKEN
+
 RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     ca-certificates \
